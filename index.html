@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap/css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Firebase DB -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+    <!-- moment -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <title>Train Scheduler</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="jumbotron jumbotron-billboard">
+            <h1 class="text-center">Train schedule</h1>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Train Schedule Updated: </h3>                   
+                    </div>
+                    <div class="panel-body">
+                        <table class="table" id="Table">
+                            <thead>
+                                <tr>
+                                    <th>Train Number</th>
+                                    <th>Destination</th>
+                                    <th>Frequency</th>
+                                    <th>Next Arrival</th>
+                                    <th>Minutes Away</th>
+                                </tr>
+                            </thead>
+                                <!-- <tbody> -->
+                                    
+                                <!-- </tbody> -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--Form for trains-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Train Detail: </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                                <div class="form-group"> 
+                                    <label for="traineName">Train Name</label>
+                                    <input type="text" class="form-control" id="EnterTrainName">
+                                </div>
+                                <div class="form-group"> 
+                                    <label for="destination">Destination</label>
+                                    <input type="text" class="form-control" id="EnterDest">
+                                </div>	
+                                <div class="form-group">
+                                    <label for="firstTrainTime">First Train Time-military time</label>
+                                    <input type="text" class="form-control" id="EnterFirstTrain">
+                                </div>	
+                                <div class="form-group"> 
+                                    <label for="frequency">Frequency by minute</label>
+                                    <input type="text" class="form-control" id="Enterfreq">
+                                </div>	
+                                <div class="text-center">
+                                <button type="submit" class="btn btn-outline-primary" id="AddnewTrain">Submit</button>
+                                </div>
+                            </form>
+        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <!--JQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/moment.js"></script>
+
+
+</body>
+
+</body>
+</html>

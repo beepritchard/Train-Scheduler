@@ -1,0 +1,13 @@
+body {
+    background-image: url("../images/TrainBG.png");
+}
+
+.jumbotron {
+    background: none;
+    color: whitesmoke; 
+}
+
+.panel-heading {
+    background-image: none;
+    
+}
