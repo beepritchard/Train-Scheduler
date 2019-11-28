@@ -1,6 +1,3 @@
-
-// const config = require('./config.json');
-
 var config = {
     apiKey: "AIzaSyAu586G6NrLSzCe9vQXotXYcx4W9BAjms8",
     authDomain: "pritchard-bee-traintime.firebaseapp.com",
@@ -21,7 +18,7 @@ var config = {
         var name = $("#EnterTrainName").val().trim();
         var destination = $("#EnterDest").val().trim();
         var fTrain = $("#EnterFirstTrain").val().trim();
-        var freq = $("#EnterFreq").val().trim();
+        var freq = $("#Enterfreq").val().trim();
 
         var newTrain = {
             name: name,
@@ -32,10 +29,10 @@ var config = {
 
         database.ref().push(newTrain);
 
-        $('#EnterTrainName').val("");
-        $('#EnterDest').val("");
-        $('#EnterFirstTrain').val("");
-        $('#EnterFreq').val("");
+        $("#EnterTrainName").val("");
+        $("#EnterDest").val("");
+        $("#EnterFirstTrain").val("");
+        $("#Enterfreq").val("");
 
         return false;
     }); 
@@ -49,28 +46,36 @@ var config = {
         var freq = child.val().frequen;
 
     // moment JS
+    var timeArr = fTrain.split(":");
+    var trainTime = moment()
+      .hours(timeArr[0])
+      .minutes(timeArr[1]);
+    var arr;
+    var minutes;
+    var maxmoment = moment.max(moment(), trainTime);
+        if (maxmoment === trainTime){
+            arr = trainTime.format("hh:mm A");
+            minutes = trainTime.diff(moment(),"minutes");
+        }
+    var diffTime = moment().diff(trainTime,"minutes");
+    console.log("diffTime", diffTime);
+    var remainder = diffTime % freq;
+    console.log("remainder", remainder);
+    minutes = freq - remainder;
+    arr = moment().add(minutes, "m").format("hh:mm A");
+    console.log("arr", arr);
 
-    var firstTimeConverted = moment(fTrain, "HH:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
 
-    var nowTime = moment();
-    console.log("NOW: " + moment(nowTime).format("hh:mm"));
+    
 
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("DIFFERENCE: " + diffTime);
-
-    var tRemainder = diffTime % freq;
-    console.log(tRemainder);
-
-    var tMinutesTillTrain = freq - tRemainder;
-    console.log("MINUTES AWAY: " + tMinutesTillTrain);
-
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-
-    $("#trainTable > tbody").append("<tr><td>" + name + "</td><td>" 
-        + destination  + "</td><td>" + freq + "</td><td>" + nextTrain 
-        + "</td><td>" + tMinutesTillTrain + "</td></tr>");
-
+    $("#Train > tbody").append(
+        $("<tr>").append(
+          $("<td>").text(name),
+          $("<td>").text(destination),
+          $("<td>").text(freq),
+          $("<td>").text(arr),
+          $("<td>").text(minutes)
+        )
+      );
 
     });
