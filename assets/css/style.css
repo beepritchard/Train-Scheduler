@@ -2,6 +2,10 @@ body {
     background-image: url("../images/TrainBG.png");
 }
 
+.card-header{
+    color: white;
+
+}
 .jumbotron {
     background: none;
     color: whitesmoke; 
@@ -10,4 +14,8 @@ body {
 .panel-heading {
     background-image: none;
     
+}
+#Train{
+    background-color: white;
+
 }
